@@ -36,8 +36,6 @@ in
     ../modules/containers/containers.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_14;
-
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -67,15 +65,14 @@ in
     "dotnet-sdk-6.0.428"
     "dotnet-runtime-6.0.36"
   ];
-  nixpkgs.config.packageOverrides = pkgs: {
-    vimix-cursors = pkgs.callPackage (fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/30a61f056ac492e3b7cdcb69c1e6abdcf00e39cf.tar.gz";
-      sha256 = "sha256:1l6kn2g9xf1rl179av9h3lc9szbnvf13l9arnmi9x81l9b1vw8gw";
-    } + "/pkgs/by-name/vi/vimix-cursors/package.nix") {};
-  };
 
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTR{idVendor}=="04e8", MODE="0666", GROUP="adbusers"
+    KERNEL=="event*", SUBSYSTEM=="input", MODE="0666"
+    KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", MODE="0666", TAG+="uaccess"
+    KERNEL=="hidraw*", KERNELS=="*054C:0CE6*", MODE="0666", TAG+="uaccess"
+    ACTION=="add|change", SUBSYSTEM=="usb", ATTR{idVendor}=="091e", ATTR{idProduct}=="46a1", \
+        TEST=="power/control", ATTR{power/control}="on"
   '';
 
   services.xserver.enable = true;
@@ -101,6 +98,7 @@ in
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
   };
+  hardware.uinput.enable = true;
 
   hardware.opengl = {
     enable = true;
@@ -211,7 +209,6 @@ in
     discord
     lsof
     switcheroo
-    zed-editor
     nmon
     direnv
     adwsteamgtk
@@ -220,6 +217,9 @@ in
     obsidian
     devenv
     osslsigncode
+    heroic
+    qbittorrent
+    vlc
   ];
 
   virtualisation.waydroid.enable = true;
@@ -231,7 +231,7 @@ in
 
   environment.sessionVariables = {
     GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
-    GTK_THEME = "vo1ded-dark";
+    GTK_THEME = "Tokyonight-Purple-Dark";
   };
 
   fonts.packages = with pkgs; [

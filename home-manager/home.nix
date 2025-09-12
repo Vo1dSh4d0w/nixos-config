@@ -1,8 +1,8 @@
 {
   nix-colors,
+  vimix-cursors,
   nixvim,
   ags,
-  vimix-cursors,
   ...
 }:
 {
@@ -42,6 +42,8 @@ in
     ./modules/neovim.nix
     ./modules/starship.nix
     ./modules/fastfetch.nix
+    ./modules/zeditor.nix
+    ./modules/eww.nix
   ];
 
   home = {
@@ -100,6 +102,8 @@ in
   kitty-module.enable = true;
   starship-module.enable = true;
   fastfetch-module.enable = true;
+  zeditor-module.enable = true;
+  eww-module.enable = true;
 
   systemd.user.startServices = "sd-switch";
 
@@ -118,6 +122,7 @@ in
   home.sessionVariables = {
     XCURSOR_THEME = "Vimix-cursors";
     XCURSOR_SIZE = "24";
+    SDL_JOYSTICK_HIDAPI_PS4 = "0";
   };
 
   dconf = {
@@ -135,9 +140,13 @@ in
   gtk = {
     enable = true;
     theme = {
-      name = "vo1ded-dark";
-      package = nix-colors-lib.gtkThemeFromScheme {
-        scheme = config.colorScheme;
+      #name = "vo1ded-dark";
+      #package = nix-colors-lib.gtkThemeFromScheme {
+      #  scheme = config.colorScheme;
+      #};
+      name = "Tokyonight-Purple-Dark";
+      package = pkgs.tokyonight-gtk-theme.override {
+        themeVariants = [ "purple" ];
       };
     };
     gtk3.extraConfig = {

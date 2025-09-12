@@ -24,7 +24,7 @@ in
   config = lib.mkIf cfg.enable {
     users.users.${cfg.username} = {
       isNormalUser = true;
-      extraGroups = lib.mkIf cfg.sudoer [ "wheel" "audio" ];
+      extraGroups = lib.mkIf cfg.sudoer [ "wheel" "audio" "input" "uinput" ];
     };
 
     home-manager.users.${cfg.username} = lib.mkIf cfg.useHomeManager (
@@ -32,8 +32,9 @@ in
         nix-colors = inputs.nix-colors;
         nixvim = inputs.nixvim;
         nixpkgs = inputs.nixpkgs;
-        ags = inputs.ags;
+        nixpkgs-stable = inputs.nixpkgs-stable;
         vimix-cursors = inputs.vimix-cursors;
+        ags = inputs.ags;
       }
     );
   };

@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -23,13 +24,18 @@
     vo1ded-panel.url = "github:FilipTLW/vo1ded-panel";
     vo1ded-panel.inputs.nixpkgs.follows = "nixpkgs";
 
-    lix = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-3.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
+    vimix-cursors.url = "path:/home/filip/git/nixos-config/subflakes/vimix-cursors";
+
+    lixnix = {
+      url = "https://git.lix.systems/lix-project/lix/archive/release-2.93.tar.gz";
+      flake = false;
     };
 
-    # forgive me..
-    vimix-cursors.url = "path:./subflakes/vimix-cursors";
+    lix = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.3-1.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.lix.follows = "lixnix";
+    };
   };
 
   outputs =

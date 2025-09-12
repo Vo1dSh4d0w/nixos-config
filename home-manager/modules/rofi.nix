@@ -8,12 +8,12 @@ config,
   options.rofi-module = {
     enable = lib.mkEnableOption "Enable rofi module";
   };
-  
+
   config = lib.mkIf config.rofi-module.enable {
     home.packages = with pkgs; [
       rofi
     ];
-    
+
     home.file.".config/rofi/themes/vo1ded.rasi".text = ''
     /******************************************************************************
      * ROFI Color theme
@@ -152,7 +152,7 @@ config,
         background-color: var(selected-normal-background);
         text-color:       var(selected-normal-foreground);
     }
-    
+
     num-filtered-rows, num-rows {
         text-color: grey;
         expand:     false;
@@ -190,14 +190,221 @@ config,
         text-color: inherit;
     }
     '';
-    
+
+    home.file.".config/rofi/themes/test_theme.rasi".text = ''
+      /* ROUNDED THEME FOR ROFI */
+      /* Author: Newman Sanchez (https://github.com/newmanls) */
+
+      * {
+          bg0:    #212121F2;
+          bg1:    #2A2A2A;
+          bg2:    #3D3D3D80;
+          bg3:    #AB47BCF2;
+          fg0:    #E6E6E6;
+          fg1:    #FFFFFF;
+          fg2:    #969696;
+          fg3:    #3D3D3D;
+      }
+
+      @import "template/rounded-template.rasi"
+    '';
+
+    home.file.".config/rofi/template/rounded-template.rasi".text = ''
+      /* ROUNDED THEME FOR ROFI */
+      /* Author: Newman Sanchez (https://github.com/newmanls) */
+
+      * {
+          font:   "Roboto 12";
+
+          background-color:   transparent;
+          text-color:         @fg0;
+
+          margin:     0px;
+          padding:    0px;
+          spacing:    0px;
+      }
+
+      window {
+          location:       north;
+          y-offset:       calc(50% - 176px);
+          width:          480;
+          border-radius:  24px;
+
+          background-color:   @bg0;
+      }
+
+      mainbox {
+          padding:    12px;
+      }
+
+      inputbar {
+          background-color:   @bg1;
+          border-color:       @bg3;
+
+          border:         2px;
+          border-radius:  16px;
+
+          padding:    8px 16px;
+          spacing:    8px;
+          children:   [ prompt, entry ];
+      }
+
+      prompt {
+          text-color: @fg2;
+      }
+
+      entry {
+          placeholder:        "Search";
+          placeholder-color:  @fg3;
+      }
+
+      message {
+          margin:             12px 0 0;
+          border-radius:      16px;
+          border-color:       @bg2;
+          background-color:   @bg2;
+      }
+
+      textbox {
+          padding:    8px 24px;
+      }
+
+      listview {
+          background-color:   transparent;
+
+          margin:     12px 0 0;
+          lines:      8;
+          columns:    1;
+
+          fixed-height: false;
+      }
+
+      element {
+          padding:        8px 16px;
+          spacing:        8px;
+          border-radius:  16px;
+      }
+
+      element normal active {
+          text-color: @bg3;
+      }
+
+      element alternate active {
+          text-color: @bg3;
+      }
+
+      element selected normal, element selected active {
+          background-color:   @bg3;
+      }
+
+      element-icon {
+          size:           1em;
+          vertical-align: 0.5;
+      }
+
+      element-text {
+          text-color: inherit;
+      }
+    '';
+
+    home.file.".config/rofi/tokyonight.rasi".text = ''
+      /*
+       * ROFI color theme
+       *
+       * Based on Something Found in the Internet
+       *
+       * User: Contributors
+       * Copyright: *!
+       */
+
+      configuration {
+        font: "Cascadia Code 10";
+
+        drun {
+          display-name: "";
+        }
+
+        run {
+          display-name: "";
+        }
+
+        window {
+          display-name: "";
+        }
+
+        timeout {
+          delay: 10;
+          action: "kb-cancel";
+        }
+      }
+
+      * {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        spacing: 0;
+
+        bg: #1a1b26;
+        bg-alt: #232433;
+        fg: #6a6f87;
+        fg-alt: #a9b1d6;
+
+        background-color: @bg;
+        text-color: @fg;
+      }
+
+      window {
+        transparency: "real";
+        width: 700px;
+      }
+
+      mainbox {
+        children: [inputbar, listview];
+      }
+
+      inputbar {
+        background-color: #A48CF7;
+        children: [prompt, entry];
+      }
+
+      entry {
+        background-color: inherit;
+        padding: 12px 3px;
+      }
+
+      prompt {
+        background-color: inherit;
+        padding: 12px;
+      }
+
+      listview {
+        lines: 8;
+      }
+
+      element {
+        children: [element-icon, element-text];
+      }
+
+      element-icon {
+        padding: 10px 10px;
+        size: 20px;
+      }
+
+      element-text {
+        padding: 10px 0;
+      }
+
+      element-text selected {
+        text-color: @fg-alt;
+      }
+    '';
+
     home.file.".config/rofi/config.rasi".text = ''
     configuration {
-      modes: [ combi ];
-      combi-modes: [ window, drun, run ];
+      modes: [ run ];
     }
-    
-    @theme "vo1ded"
+
+    @theme "tokyonight"
     '';
   };
 }

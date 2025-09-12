@@ -30,7 +30,7 @@ pkgs,
         gaps_out = 10;
         gaps_workspaces = 50;
         "col.inactive_border" = "rgba(595959aa)";
-        "col.active_border" = "rgba(860ac9ff) rgba(0ab0c9cc) 45deg";
+        "col.active_border" = "rgba(860ac9ff)";
         resize_on_border = true;
         allow_tearing = false;
         layout = "dwindle";
@@ -39,8 +39,8 @@ pkgs,
       decoration = {
         rounding = 0;
 
-        active_opacity = 0.90;
-        inactive_opacity = 0.90;
+        active_opacity = 0.9;
+        inactive_opacity = 0.9;
 
         shadow = {
           enabled = true;
@@ -51,16 +51,11 @@ pkgs,
 
         blur = {
           enabled = true;
-          size = 5;
-          passes = 4;
+          size = 6;
+          passes = 2;
 
-          xray = true;
-          special = false;
-          brightness = 0.8;
-          noise = 0.01;
-          contrast = 0.8;
-          vibrancy = 0.5;
-          vibrancy_darkness = 0.2;
+          xray = false;
+          special = true;
           new_optimizations = true;
         };
       };
