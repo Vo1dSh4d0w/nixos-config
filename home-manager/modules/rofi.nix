@@ -11,7 +11,7 @@ config,
 
   config = lib.mkIf config.rofi-module.enable {
     home.packages = with pkgs; [
-      rofi
+      rofi-wayland
     ];
 
     home.file.".config/rofi/themes/vo1ded.rasi".text = ''
@@ -331,11 +331,6 @@ config,
         window {
           display-name: "";
         }
-
-        timeout {
-          delay: 10;
-          action: "kb-cancel";
-        }
       }
 
       * {
@@ -344,7 +339,8 @@ config,
         padding: 0;
         spacing: 0;
 
-        bg: #1a1b26;
+        bg: #1a1b2640;
+        bg-opaque: #1a1b26;
         bg-alt: #232433;
         fg: #6a6f87;
         fg-alt: #a9b1d6;
@@ -356,6 +352,9 @@ config,
       window {
         transparency: "real";
         width: 700px;
+        border-radius: 16px;
+        border: 2px;
+        border-color: @bg-opaque;
       }
 
       mainbox {
@@ -363,17 +362,20 @@ config,
       }
 
       inputbar {
-        background-color: #A48CF7;
+        background-color: #A48CF790;
+        text-color: #ffffff;
         children: [prompt, entry];
       }
 
       entry {
         background-color: inherit;
+        text-color: inherit;
         padding: 12px 3px;
       }
 
       prompt {
         background-color: inherit;
+        text-color: inherit;
         padding: 12px;
       }
 

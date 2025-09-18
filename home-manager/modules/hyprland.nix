@@ -11,7 +11,7 @@ pkgs,
 
   config = let
     additional_binds = if config.rofi-module.enable then [
-      "$mainMod, space, exec, rofi -show run"
+      "$mainMod, space, exec, rofi -show run -modi \"run,=:kalker\""
     ] else [];
   in
   lib.mkIf config.hyprland-module.enable {
@@ -175,6 +175,11 @@ pkgs,
       env = [
         "XCURSOR_THEME,Vimix-cursors"
         "XCURSOR_SIZE,24"
+      ];
+
+      layerrule = [
+        "blur, rofi"
+        "ignorealpha, rofi"
       ];
     };
   };
