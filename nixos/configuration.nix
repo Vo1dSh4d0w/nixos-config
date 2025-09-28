@@ -238,17 +238,13 @@ in
     nerd-fonts.jetbrains-mono
   ];
 
-  programs.tmux = {
-    enable = true;
-    shortcut = "a";
-  };
-
   programs.streamcontroller.enable = true;
 
   programs.nix-ld.enable = true;
 
   garuda.networking.iwd = false;
   garuda.performance-tweaks.enable = true;
+  garuda.performance-tweaks.cachyos-kernel = true;
 
   services.flatpak.enable = true;
 

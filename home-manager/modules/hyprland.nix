@@ -181,6 +181,10 @@ pkgs,
         "blur, rofi"
         "ignorealpha, rofi"
       ];
+
+      debug = {
+        disable_logs = false;
+      };
     };
   };
 }

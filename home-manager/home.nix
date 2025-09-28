@@ -36,14 +36,7 @@ in
   imports = [
     nix-colors.homeManagerModule
     nixvim.homeManagerModules.nixvim
-    ./modules/hyprland.nix
-    ./modules/kitty.nix
-    ./modules/rofi.nix
-    ./modules/neovim.nix
-    ./modules/starship.nix
-    ./modules/fastfetch.nix
-    ./modules/zeditor.nix
-    ./modules/eww.nix
+    ./modules
   ];
 
   home = {
@@ -104,6 +97,7 @@ in
   fastfetch-module.enable = true;
   zeditor-module.enable = true;
   eww-module.enable = true;
+  vo1d.tmux.enable = true;
 
   systemd.user.startServices = "sd-switch";
 
