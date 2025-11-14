@@ -10,7 +10,7 @@ let
     dotnetCorePackages.sdk_8_0_3xx
     dotnetPackages.Nuget
     godot_4
-    godot_4-export-templates
+    godot_4-export-templates-bin
     mono
     msbuild
   ];
@@ -138,7 +138,7 @@ in
   containers-module.enable = true;
 
   programs.gnupg.agent.enable = true;
-  programs.gnupg.agent.pinentryPackage = pkgs.pinentry;
+  programs.gnupg.agent.pinentryPackage = pkgs.pinentry-curses;
 
   services.pcscd.enable = true;
 
@@ -169,7 +169,6 @@ in
     postman
     nodejs
     nodePackages_latest.pnpm
-    pinentry
     remmina
     yubikey-manager
     yubikey-personalization
@@ -220,18 +219,19 @@ in
     heroic
     qbittorrent
     vlc
+    nautilus
   ];
 
   virtualisation.waydroid.enable = true;
-  virtualisation.virtualbox.host = {
-    enable = true;
-    enableKvm = true;
-    addNetworkInterface = false;
-  };
 
   environment.sessionVariables = {
     GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
     GTK_THEME = "Tokyonight-Purple-Dark";
+  };
+
+  environment.variables = {
+    EDITOR = lib.mkForce "nvim";
+    VISUAL = lib.mkForce "nvim";
   };
 
   fonts.packages = with pkgs; [
@@ -247,6 +247,9 @@ in
   garuda.performance-tweaks.cachyos-kernel = true;
 
   services.flatpak.enable = true;
+  services.mullvad-vpn.enable = true;
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
 
   networking.firewall.enable = false;
 

@@ -101,10 +101,6 @@ pkgs,
         numlock_by_default = true;
       };
 
-      gestures = {
-        workspace_swipe = false;
-      };
-
       bind = [
         "$mainMod, Q, exec, $terminal"
         "$mainMod, E, exec, $fileManager"

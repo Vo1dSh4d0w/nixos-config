@@ -11,7 +11,7 @@ config,
 
   config = lib.mkIf config.rofi-module.enable {
     home.packages = with pkgs; [
-      rofi-wayland
+      rofi
     ];
 
     home.file.".config/rofi/themes/vo1ded.rasi".text = ''
