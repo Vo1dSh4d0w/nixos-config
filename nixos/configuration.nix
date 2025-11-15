@@ -163,7 +163,6 @@ in
     prismlauncher
     termscp
     telegram-desktop
-    vesktop
     kalker
     teams-for-linux
     postman

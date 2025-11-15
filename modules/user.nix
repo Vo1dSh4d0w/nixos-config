@@ -31,6 +31,7 @@ in
       import cfg.homeManagerConfig {
         nix-colors = inputs.nix-colors;
         nixvim = inputs.nixvim;
+        nixcord = inputs.nixcord;
         nixpkgs = inputs.nixpkgs;
         nixpkgs-stable = inputs.nixpkgs-stable;
         vimix-cursors = inputs.vimix-cursors;

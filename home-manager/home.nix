@@ -2,6 +2,7 @@
   nix-colors,
   vimix-cursors,
   nixvim,
+  nixcord,
   ags,
   ...
 }:
@@ -36,6 +37,7 @@ in
   imports = [
     nix-colors.homeManagerModule
     nixvim.homeManagerModules.nixvim
+    nixcord.homeModules.nixcord
     ./modules
   ];
 
@@ -149,6 +151,13 @@ in
 
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = "1";
+    };
+  };
+
+  programs.nixcord = {
+    enable = true;
+    vesktop.enable = true;
+    config = {
     };
   };
 
