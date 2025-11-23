@@ -1,26 +1,34 @@
 {
-lib,
-config,
-pkgs,
-...
+  lib,
+  config,
+  pkgs,
+  prefix,
+  ...
 }:
+let
+  cfg = config.${prefix}.hyprland;
+in
 {
-  options.hyprland-module = {
-    enable = lib.mkEnableOption "Enable Hyprland config";
+  options.${prefix}.hyprland = {
+    enable = lib.mkEnableOption "enable hyprland config";
   };
 
   config = let
-    additional_binds = if config.rofi-module.enable then [
+    additional-binds = if config.${prefix}.rofi.enable then [
       "$mainMod, space, exec, rofi -show run -modi \"run,=:kalker\""
     ] else [];
+
+    additional-exec-once = if config.${prefix}.swww.enable then [
+      "${config.home.homeDirectory}/.config/swww/swww-init.sh"
+    ] else [];
   in
-  lib.mkIf config.hyprland-module.enable {
+  lib.mkIf cfg.enable {
 
     wayland.windowManager.hyprland.enable = true;
     wayland.windowManager.hyprland.settings = {
 
       "$terminal" = "kitty";
-      "$fileManager" = "dolphin";
+      "$fileManager" = "nautilus";
       "$mainMod" = "SUPER";
 
       monitor = [ "DP-1,2560x1440@165,0x0,1" "DP-2,2560x1440@165,2560x0,1" ];
@@ -154,7 +162,7 @@ pkgs,
         "$mainMod SHIFT, F10, movetoworkspace, 20"
         "$mainMod SHIFT, D, movetoworkspace, special"
         "$mainMod SHIFT, S, exec, hyprshot -z -m region"
-      ] ++ additional_binds;
+      ] ++ additional-binds;
 
       bindm = [
         "$mainMod, mouse:272, movewindow"
@@ -164,9 +172,8 @@ pkgs,
       exec-once = [
         "dbus-update-activation-environment --systemd DISPLAY"
         "streamcontroller -b"
-        "${config.home.homeDirectory}/.config/swww/swww-init.sh"
         "${pkgs.vo1ded-panel}/bin/vo1ded-panel"
-      ];
+      ] ++ additional-exec-once;
 
       env = [
         "XCURSOR_THEME,Vimix-cursors"

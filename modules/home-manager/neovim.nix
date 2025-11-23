@@ -1,41 +1,45 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, prefix, ... }:
+let
+  cfg = config.${prefix}.neovim;
+in
 {
-  options.neovim-module = {
-    enable = lib.mkEnableOption "enable neovim module"; theme = lib.mkOption {
+  options.${prefix}.neovim = {
+    enable = lib.mkEnableOption "enable neovim config";
+    theme = lib.mkOption {
       description = "neovim theme";
     };
   };
-  
-  config = lib.mkIf config.neovim-module.enable {
+
+  config = lib.mkIf cfg.enable {
     programs.nixvim = {
       enable = true;
 
       globalOpts = {
       	number = true;
-	relativenumber = true;
+       	relativenumber = true;
       };
 
       keymaps = [
         {
-	  mode = "t";
-	  action = "<C-\\><C-n>";
-	  key = "<Esc>";
-	}
-	{
-	  mode = "n";
-	  action = ":below terminal<CR>";
-	  key = "<Leader>t";
-	}
-	{
-	  mode = "n";
-	  action = ":NvimTreeFocus<CR>";
-	  key = "<Leader>nt";
+       	  mode = "t";
+       	  action = "<C-\\><C-n>";
+       	  key = "<Esc>";
+       	}
+       	{
+       	  mode = "n";
+       	  action = ":below terminal<CR>";
+       	  key = "<Leader>t";
+       	}
+       	{
+       	  mode = "n";
+       	  action = ":NvimTreeFocus<CR>";
+       	  key = "<Leader>nt";
         }
-	{
-	  mode = "n";
-	  action = ":NvimTreeFindFile<CR>";
-	  key = "<Leader>nff";
-	}
+       	{
+       	  mode = "n";
+       	  action = ":NvimTreeFindFile<CR>";
+       	  key = "<Leader>nff";
+       	}
       ];
 
       globals = {
@@ -44,9 +48,9 @@
 
       colorschemes.base16 = {
         enable = true;
-        colorscheme = config.neovim-module.theme;
+        colorscheme = cfg.theme;
       };
-      
+
       plugins = {
         lualine = {
           enable = true;
@@ -62,18 +66,18 @@
           };
         };
 
-	nvim-tree = {
-	  enable = true;
-	  hijackCursor = true;
-	};
-        
-	telescope = {
-	  enable = true;
-	};
+       	nvim-tree = {
+       	  enable = true;
+       	  hijackCursor = true;
+       	};
 
-	nix = {
-	  enable = true;
-	};
+       	telescope = {
+       	  enable = true;
+       	};
+
+       	nix = {
+       	  enable = true;
+       	};
 
         treesitter = {
           enable = true;
@@ -93,7 +97,7 @@
           servers = {
             nixd = {
               enable = true;
-              settings = 
+              settings =
                 let
                   flake = ''(builtins.getFlake "/home/filip/git/nixos-config""'';
                 in

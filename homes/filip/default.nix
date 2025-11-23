@@ -1,19 +1,12 @@
 {
-  nix-colors,
-  vimix-cursors,
-  nixvim,
-  nixcord,
-  ags,
-  ...
-}:
-{
   config,
   pkgs,
   lib,
+  inputs,
+  prefix,
   ...
 }:
 let
-  nix-colors-lib = nix-colors.lib.contrib {inherit pkgs;};
   vo1ded-base16 = {
     base00 = "#291d44";
     base01 = "#392173";
@@ -35,33 +28,17 @@ let
 in
 {
   imports = [
-    nix-colors.homeManagerModule
-    nixvim.homeManagerModules.nixvim
-    nixcord.homeModules.nixcord
-    ./modules
+    inputs.nix-colors.homeManagerModule
+    inputs.nixvim.homeManagerModules.nixvim
+    inputs.nixcord.homeModules.nixcord
   ];
 
   home = {
-    username = "filip";
-    homeDirectory = "/home/filip";
-
     packages = with pkgs; [
       glib
       dconf
       swww
-      #(pkgs.runCommandLocal "vimix-cursors-fix" {} ''
-      #  dir=$out/share/icons
-      #  mkdir -p $dir
-      #  ln -s ${pkgs.vimix-cursors}/share/icons/Vimix-cursors $dir/default
-      #'')
     ];
-  };
-
-  home.file.".config/swww/swww-init.sh" = {
-    text = ''
-      swww-daemon & sleep 0.1 & swww img ${config.home.homeDirectory}/.config/swww/wallpaper.png
-    '';
-    executable = true;
   };
 
   colorScheme = {
@@ -72,17 +49,16 @@ in
     palette = vo1ded-base16;
   };
 
-  neovim-module = {
-    enable = true;
-    theme = vo1ded-base16;
-  };
 
-  programs.home-manager.enable = true;
   programs.git = {
     enable = true;
     userName = "Filip Myslinski";
     userEmail = "filipmyslinski2006@gmail.com";
+    settings = {
+      core.editor = lib.mkForce "nvim";
+    };
   };
+  programs.micro.enable = lib.mkForce false; # one of the few negatives about GNS
 
   programs.brave = {
     enable = true;
@@ -92,14 +68,21 @@ in
     ];
   };
 
-  hyprland-module.enable = true;
-  rofi-module.enable = true;
-  kitty-module.enable = true;
-  starship-module.enable = true;
-  fastfetch-module.enable = true;
-  zeditor-module.enable = true;
-  eww-module.enable = true;
-  vo1d.tmux.enable = true;
+  ${prefix} = {
+    hyprland.enable = true;
+    rofi.enable = true;
+    kitty.enable = true;
+    starship.enable = true;
+    fastfetch.enable = true;
+    zeditor.enable = true;
+    tmux.enable = true;
+    swww.enable = true;
+    neovim = {
+      enable = true;
+      theme = vo1ded-base16;
+    };
+  };
+
 
   systemd.user.startServices = "sd-switch";
 
@@ -108,7 +91,7 @@ in
   home.pointerCursor = {
     enable = true;
     name = "Vimix-cursors";
-    package = vimix-cursors.packages.x86_64-linux.vimix-cursors;
+    package = inputs.vimix-cursors.packages.x86_64-linux.vimix-cursors;
     size = 24;
     gtk.enable = true;
     x11 = {
@@ -136,10 +119,6 @@ in
   gtk = {
     enable = true;
     theme = {
-      #name = "vo1ded-dark";
-      #package = nix-colors-lib.gtkThemeFromScheme {
-      #  scheme = config.colorScheme;
-      #};
       name = "Tokyonight-Purple-Dark";
       package = pkgs.tokyonight-gtk-theme.override {
         themeVariants = [ "purple" ];

@@ -1,15 +1,19 @@
 {
-pkgs,
-lib,
-config,
-...
+  pkgs,
+  lib,
+  config,
+  prefix,
+  ...
 }:
+let
+  cfg = config.${prefix}.zeditor;
+in
 {
-  options.zeditor-module = {
+  options.${prefix}.zeditor = {
     enable = lib.mkEnableOption "Enable zed editor module";
   };
 
-  config = lib.mkIf config.zeditor-module.enable {
+  config = lib.mkIf cfg.enable {
     programs.zed-editor = {
       enable = true;
 

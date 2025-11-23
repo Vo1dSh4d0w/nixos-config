@@ -1,14 +1,18 @@
 {
-lib,
-config,
-...
+  lib,
+  config,
+  prefix,
+  ...
 }:
+let
+  cfg = config.${prefix}.fastfetch;
+in
 {
-  options.fastfetch-module = {
-    enable = lib.mkEnableOption "Enable Starship config";
+  options.${prefix}.fastfetch = {
+    enable = lib.mkEnableOption "enable fastfetch config";
   };
-  
-  config = lib.mkIf config.fastfetch-module.enable {
+
+  config = lib.mkIf cfg.enable {
     programs.fastfetch = {
       enable = true;
       settings = {

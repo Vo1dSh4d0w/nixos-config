@@ -1,9 +1,10 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, prefix, ... }:
 let
-  cfg = config.vo1d.tmux;
+  cfg = config.${prefix}.tmux;
 in
 {
-  options.vo1d.tmux.enable = lib.mkEnableOption "enable tmux";
+  options.${prefix}.tmux.enable = lib.mkEnableOption "enable tmux";
+
   config = lib.mkIf cfg.enable {
     programs.tmux = {
       enable = true;

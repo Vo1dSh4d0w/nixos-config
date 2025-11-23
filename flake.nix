@@ -41,7 +41,6 @@
   };
 
   outputs =
-
     {
       self,
       nixpkgs,
@@ -51,19 +50,23 @@
     }@inputs:
     let
       inherit (self) outputs;
+      prefix = "vo1d";
+      mkVo1dSystem = module: garuda.lib.garudaSystem {
+        specialArgs = {
+          inherit inputs outputs prefix;
+        };
+        modules = [
+          #lix.nixosModules.default
+          module
+          ./modules/nixos
+        ];
+      };
     in
     {
       nixosConfigurations = {
-        filipnixos = garuda.lib.garudaSystem {
-          specialArgs = {
-            inherit inputs outputs;
-          };
-          modules = [
-            #lix.nixosModules.default
-            ./nixos/configuration.nix
-          ];
-        };
+        filipnixos = mkVo1dSystem ./hosts/filipnixos;
       };
+
       nixConfig = {
         access_tokens = {
           "github.com" = builtins.readFile "/home/filip/.secrets/nix-github-token";

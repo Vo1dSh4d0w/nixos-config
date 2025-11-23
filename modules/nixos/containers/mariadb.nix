@@ -1,12 +1,12 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, prefix, ... }:
 let
-  cfg = config.containers-module.mariadb; 
+  cfg = config.${prefix}.containers.mariadb;
 in
 {
-  options.containers-module.mariadb = {
+  options.${prefix}.containers.mariadb = {
     enable = lib.mkEnableOption "enable mariadb container";
   };
-  
+
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers.mariadb = {
       autoStart = true;
@@ -22,6 +22,6 @@ in
         "/home/filip/docker/mariadb/data:/var/lib/mysql"
       ];
     };
-    
+
   };
 }

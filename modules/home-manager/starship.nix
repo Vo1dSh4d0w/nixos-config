@@ -1,14 +1,18 @@
 {
-lib,
-config,
-...
+  lib,
+  config,
+  prefix,
+  ...
 }:
+let
+  cfg = config.${prefix}.starship;
+in
 {
-  options.starship-module = {
-    enable = lib.mkEnableOption "Enable Starship config";
+  options.${prefix}.starship = {
+    enable = lib.mkEnableOption "enable starship config";
   };
-  
-  config = lib.mkIf config.starship-module.enable {
+
+  config = lib.mkIf cfg.enable {
     programs.starship = {
       enable = true;
       enableFishIntegration = true;

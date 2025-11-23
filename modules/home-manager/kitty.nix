@@ -1,15 +1,19 @@
 {
-pkgs,
-lib,
-config,
-...
+  pkgs,
+  lib,
+  config,
+  prefix,
+  ...
 }:
+let
+  cfg = config.${prefix}.kitty;
+in
 {
-  options.kitty-module = {
-    enable = lib.mkEnableOption "Enable kitty terminal module";
+  options.${prefix}.kitty = {
+    enable = lib.mkEnableOption "enable kitty config";
   };
 
-  config = lib.mkIf config.kitty-module.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       kitty
     ];
@@ -25,6 +29,7 @@ config,
     background_opacity    0.5
 
     window_padding_width  4
+
     '';
   };
 }
