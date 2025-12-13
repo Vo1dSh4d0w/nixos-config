@@ -50,10 +50,16 @@
     }@inputs:
     let
       inherit (self) outputs;
+
       prefix = "vo1d";
+
+      packageOverrides = import ./pkgs {
+        inherit nixpkgs;
+      };
+
       mkVo1dSystem = module: garuda.lib.garudaSystem {
         specialArgs = {
-          inherit inputs outputs prefix;
+          inherit inputs outputs prefix packageOverrides;
         };
         modules = [
           #lix.nixosModules.default

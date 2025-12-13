@@ -1,4 +1,4 @@
-{inputs, prefix, ...}: {
+{inputs, prefix, packageOverrides, ...}: {
   imports = [
     ./containers
     ./users
@@ -11,7 +11,7 @@
   ];
 
   home-manager.extraSpecialArgs = {
-    inherit inputs prefix;
+    inherit inputs prefix packageOverrides;
   };
 
   garuda.home-manager.modules = [

@@ -11,13 +11,12 @@ in
   config = lib.mkIf cfg.enable {
     services.xserver = {
       enable = true;
-
-      displayManager.gdm = lib.mkIf cfg.gdm.enable {
-        enable = true;
-        wayland = true;
-      };
-
       xkb.layout = "de";
+    };
+
+    services.displayManager.gdm = lib.mkIf cfg.gdm.enable {
+      enable = true;
+      wayland = true;
     };
 
     programs.hyprland = {

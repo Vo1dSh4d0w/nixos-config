@@ -9,16 +9,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    hardware.opengl = {
-      enable = true;
-      driSupport32Bit = true;
-    };
-
     hardware.graphics = {
       enable = true;
+      enable32Bit = true;
       extraPackages = lib.mkIf cfg.mesa.enable [
         pkgs.mesa
-        pkgs.mesa.drivers
       ];
     };
   };

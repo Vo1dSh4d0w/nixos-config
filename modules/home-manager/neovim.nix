@@ -68,7 +68,7 @@ in
 
        	nvim-tree = {
        	  enable = true;
-       	  hijackCursor = true;
+       	  settings.hijackCursor = true;
        	};
 
        	telescope = {
@@ -151,6 +151,8 @@ in
             ];
           };
         };
+
+        web-devicons.enable = true;
 
       };
     };

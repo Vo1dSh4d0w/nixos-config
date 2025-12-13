@@ -4,6 +4,7 @@
   lib,
   inputs,
   prefix,
+  packageOverrides,
   ...
 }:
 let
@@ -29,7 +30,7 @@ in
 {
   imports = [
     inputs.nix-colors.homeManagerModule
-    inputs.nixvim.homeManagerModules.nixvim
+    inputs.nixvim.homeModules.nixvim
     inputs.nixcord.homeModules.nixcord
   ];
 
@@ -52,9 +53,12 @@ in
 
   programs.git = {
     enable = true;
-    userName = "Filip Myslinski";
-    userEmail = "filipmyslinski2006@gmail.com";
     settings = {
+      user = {
+        name = "Filip Myslinski";
+        email = "filipmyslinski2006@gmail.com";
+      };
+
       core.editor = lib.mkForce "nvim";
     };
   };
@@ -62,6 +66,7 @@ in
 
   programs.brave = {
     enable = true;
+    package = packageOverrides.brave;
     extensions = [
       { id = "aicmkgpgakddgnaphhhpliifpcfhicfo"; } # postman interceptor
       { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; }
@@ -137,6 +142,23 @@ in
     enable = true;
     vesktop.enable = true;
     config = {
+      plugins = {
+        experiments.enable = true;
+        memberCount = {
+          enable = true;
+          memberList = true;
+        };
+        mentionAvatars.enable = true;
+        noReplyMention.enable = true;
+        permissionFreeWill.enable = true;
+        pinDMs.enable = true;
+        validUser.enable = true;
+        volumeBooster = {
+          enable = true;
+          multiplier = 4;
+        };
+        voiceMessages.enable = true;
+      };
     };
   };
 

@@ -12,6 +12,7 @@
     ./hardware-configuration.nix
     ./pkgs.nix
     ./udev.nix
+    ./wireguard.nix
   ];
 
   nix.settings.experimental-features = [

@@ -61,6 +61,7 @@ in
     obs-studio
     obsidian
     protonplus
+    protontricks
     qbittorrent
     remmina
     telegram-desktop
