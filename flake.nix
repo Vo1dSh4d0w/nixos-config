@@ -2,18 +2,14 @@
   description = "Your new nix config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs?rev=35cf4ede045d04fdd51a44b606a71104f305c9c0";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    chaotic-nyx.url = "github:chaotic-cx/nyx/main";
-    chaotic-nyx.inputs.home-manager.follows = "home-manager";
-
     garuda.url = "gitlab:garuda-linux/garuda-nix-subsystem/stable";
     garuda.inputs.nixpkgs.follows = "nixpkgs";
-    garuda.inputs.chaotic-nyx.follows = "chaotic-nyx";
 
     nix-colors.url = "github:misterio77/nix-colors";
 

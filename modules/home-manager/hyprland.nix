@@ -181,8 +181,8 @@ in
       ];
 
       layerrule = [
-        "blur, rofi"
-        "ignorealpha, rofi"
+        "blur on, match:namespace rofi"
+        "ignore_alpha 0, match:namespace rofi"
       ];
 
       debug = {

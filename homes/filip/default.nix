@@ -39,6 +39,7 @@ in
       glib
       dconf
       swww
+      vivaldi
     ];
   };
 
@@ -155,16 +156,12 @@ in
         validUser.enable = true;
         volumeBooster = {
           enable = true;
-          multiplier = 4;
+          multiplier = 2.0;
         };
         voiceMessages.enable = true;
       };
     };
   };
-
-  home.activation.setCursor = config.lib.dag.entryAfter ["writeBoundary"] ''
-    ${pkgs.xorg.xrdb}/bin/xrdb -merge ~/.Xresources
-  '';
 
   home.stateVersion = "24.05";
 }

@@ -25,6 +25,8 @@
     systemd-boot.enable = true;
   };
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   nixpkgs = {
     overlays = [(final: prev: {
       vo1ded-panel = inputs.vo1ded-panel.packages.x86_64-linux.default;
@@ -69,7 +71,8 @@
 
     hyprland = {
       enable = true;
-      gdm.enable = true;
+      gdm.enable = false;
+      sddm.enable = true;
     };
 
     pipewire.enable = true;
@@ -97,7 +100,6 @@
 
     performance-tweaks = {
       enable = true;
-      cachyos-kernel = true;
     };
   };
 
