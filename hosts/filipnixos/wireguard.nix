@@ -7,7 +7,7 @@
     peers = [
       {
         publicKey = "4f8Qr2M09vJn8ag6EM9MTK6bYS8jRfz1bqQLeCJ5izo=";
-        allowedIPs = [ "10.100.0.1/16" ];
+        allowedIPs = [ "10.100.0.1/16" "172.16.0.0/16" ];
         endpoint = "138.201.36.152:51820";
       }
     ];

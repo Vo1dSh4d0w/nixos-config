@@ -79,6 +79,7 @@
   };
 
   programs = {
+    kdeconnect.enable = true;
     nix-ld.enable = true;
     streamcontroller.enable = true;
     virt-manager.enable = true;
@@ -105,6 +106,8 @@
 
   networking = {
     hostName = "filipnixos";
+
+    nameservers = [ "1.1.1.1" "8.8.8.8" ];
 
     networkmanager.enable = true;
   };

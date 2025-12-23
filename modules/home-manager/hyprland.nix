@@ -109,6 +109,10 @@ in
         numlock_by_default = true;
       };
 
+      misc = {
+        render_unfocused_fps = 30;
+      };
+
       bind = [
         "$mainMod, Q, exec, $terminal"
         "$mainMod, E, exec, $fileManager"
@@ -183,6 +187,13 @@ in
       layerrule = [
         "blur on, match:namespace rofi"
         "ignore_alpha 0, match:namespace rofi"
+      ];
+
+      windowrule = [
+        "tile on, match:class steam, match:initial_title Steam"
+        "tile on, match:class SpaceIdle"
+        "render_unfocused on, match:class SpaceIdle"
+        "render_unfocused on, match:class ShellShockLive.x64"
       ];
 
       debug = {
