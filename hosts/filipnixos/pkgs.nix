@@ -44,9 +44,9 @@ in
     # editors and IDEs
     jetbrains.clion
     jetbrains.datagrip
-    jetbrains.idea-ultimate
+    jetbrains.idea
     jetbrains.phpstorm
-    jetbrains.pycharm-professional
+    jetbrains.pycharm
     jetbrains.rust-rover
     rider
 

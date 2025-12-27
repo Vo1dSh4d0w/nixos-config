@@ -17,7 +17,7 @@
 
     hyprland.url = "github:hyprwm/Hyprland";
 
-    vo1ded-panel.url = "github:FilipTLW/vo1ded-panel/next";
+    vo1ded-panel.url = "github:FilipTLW/vo1ded-panel";
     # vo1ded-panel.inputs.nixpkgs.follows = "nixpkgs";
 
     vimix-cursors.url = "path:/home/filip/git/nixos-config/subflakes/vimix-cursors";
