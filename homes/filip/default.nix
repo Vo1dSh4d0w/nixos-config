@@ -74,6 +74,10 @@ in
     ];
   };
 
+  programs.firefox = {
+    enable = true;
+  };
+
   ${prefix} = {
     hyprland.enable = true;
     rofi.enable = true;
@@ -152,7 +156,6 @@ in
         mentionAvatars.enable = true;
         noReplyMention.enable = true;
         permissionFreeWill.enable = true;
-        pinDMs.enable = true;
         validUser.enable = true;
         volumeBooster = {
           enable = true;

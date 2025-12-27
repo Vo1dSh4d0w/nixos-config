@@ -57,7 +57,6 @@ in
     hyprshot
     kitty
     libreoffice-qt6-still
-    nautilus
     obs-studio
     obsidian
     protonplus
