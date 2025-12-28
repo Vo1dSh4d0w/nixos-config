@@ -134,6 +134,15 @@ in
         themeVariants = [ "purple" ];
       };
     };
+
+    iconTheme = {
+      name = "Tokyonight-Moon";
+      package = pkgs.tokyonight-gtk-theme.override {
+        themeVariants = [ "purple" ];
+        iconVariants = [ "Moon" ];
+      };
+    };
+
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = "1";
     };

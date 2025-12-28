@@ -1037,11 +1037,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1766801897,
-        "narHash": "sha256-gEUx459Kydh0w3SW28JwSazOA0qflJaNFBUb+xT9e7o=",
+        "lastModified": 1766884804,
+        "narHash": "sha256-rhUgb+6zJxqnVepISxlVpzFZsQnF4twYQ+gcSMJXcSY=",
         "owner": "FilipTLW",
         "repo": "vo1ded-panel",
-        "rev": "82a76887e6ec9b0aa71a4b0518262bccd22185e0",
+        "rev": "0226a87cb1e22759265cfa00a56417b5ade97edf",
         "type": "github"
       },
       "original": {
