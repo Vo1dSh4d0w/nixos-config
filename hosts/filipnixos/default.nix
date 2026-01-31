@@ -86,6 +86,7 @@
   };
 
   services = {
+    flatpak.enable = true;
     gvfs.enable = true;
     mullvad-vpn.enable = true;
   };

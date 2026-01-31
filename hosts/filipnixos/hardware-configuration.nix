@@ -24,7 +24,7 @@
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" "ath12k_pci" ];
+  boot.kernelModules = [ "kvm-intel" "ath12k" ];
   boot.kernelParams = [ "pcie_aspm=off" ];
   boot.extraModulePackages = [ ];
 
