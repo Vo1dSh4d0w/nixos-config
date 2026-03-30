@@ -56,6 +56,7 @@ in
     libnotify
     lsof
     pciutils
+    rocmPackages.rocm-smi
     smartmontools
     wget
     wine
@@ -84,13 +85,14 @@ in
     qbittorrent
     remmina
     telegram-desktop
-    xclicker
+    thunderbird
     yubikey-manager
     yubikey-personalization
     yubikey-touch-detector
 
     # gaming and entertainment
     heroic
+    osu-lazer-bin
     prismlauncher
     spotify
     steam

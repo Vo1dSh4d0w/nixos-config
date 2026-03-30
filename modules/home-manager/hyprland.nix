@@ -194,6 +194,7 @@ in
         "tile on, match:class SpaceIdle"
         "render_unfocused on, match:class SpaceIdle"
         "render_unfocused on, match:class ShellShockLive.x64"
+        "render_unfocused on, match:class steam_app_960090"
       ];
 
       debug = {

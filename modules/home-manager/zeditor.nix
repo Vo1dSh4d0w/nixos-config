@@ -17,7 +17,7 @@ in
     programs.zed-editor = {
       enable = true;
 
-      extensions = [ "nix" "make" "angular" "scss" "toml" "html" "angular" ];
+      extensions = [ "nix" "make" "angular" "scss" "toml" "html" "angular" "assembly" ];
 
       extraPackages = with pkgs; [
         cargo
@@ -32,6 +32,11 @@ in
       userSettings = {
         hour_format = "hour24";
         auto_update = false;
+        autosave = {
+          after_delay = {
+            milliseconds = 500;
+          };
+        };
         base_keymap = "JetBrains";
         terminal = {
           detect_venv = {
